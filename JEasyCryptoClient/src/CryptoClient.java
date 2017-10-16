@@ -23,7 +23,7 @@ public class CryptoClient implements Runnable, ReaderObserver {
 	private InetAddress serverAddr = null;
 	private int serverPort = 10000;
 	private int clientPort = 10001;
-		
+
 	int requestId = 0;
 	
 	private Console console = System.console();
@@ -31,15 +31,18 @@ public class CryptoClient implements Runnable, ReaderObserver {
 	@Override
 	public void run() {
 		// Prepare variables.
-		try {					
+
+		try {		
+
 			serverAddr = queryServerAddress();
 			if (serverAddr == null) {
 				console.printf("Server address not given / invalid!\n");
 				console.printf("Quitting CryptoClient!\n");
 				return;
 			}
-			socket = new DatagramSocket(clientPort);			
 
+			socket = new DatagramSocket(clientPort);
+			
 			reader = new ResponseReader(socket, this);
 			reader.start();
 
