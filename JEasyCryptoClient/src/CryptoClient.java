@@ -101,7 +101,6 @@ public class CryptoClient implements Runnable, ReaderObserver {
 			addr = null;
 		}
 
-<<<<<<< HEAD
 		try {
 			console.printf("Enter port number for this client in the form \"10001\"\n");
 			String port = console.readLine("Port number > ");
@@ -111,11 +110,7 @@ public class CryptoClient implements Runnable, ReaderObserver {
 			e.printStackTrace();
 			addr = null;
 		}
-=======
-		console.printf("Enter port number for this client in the form \"10001\"\n");
-		String port = console.readLine("Port number > ");
-		clientPort = Integer.valueOf(port).intValue();
->>>>>>> 8f2dc838486dc98b34dd572c6356a4edc16c1e67
+
 		
 		return addr;
 	}
