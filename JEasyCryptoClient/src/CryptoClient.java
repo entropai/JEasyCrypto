@@ -35,8 +35,10 @@ public class CryptoClient implements Runnable, ReaderObserver {
 		try {		
 
 			serverAddr = queryServerAddress();
-			if (serverAddr == null) {
-				console.printf("Server address not given / invalid!\n");
+
+			if (null == serverAddr) {
+				console.printf("Server address or valid port not given / invalid!\n");
+
 				console.printf("Quitting CryptoClient!\n");
 				return;
 			}
@@ -101,9 +103,15 @@ public class CryptoClient implements Runnable, ReaderObserver {
 			addr = null;
 		}
 
-		console.printf("Enter port number for this client in the form \"10001\"\n");
-		String port = console.readLine("Port number > ");
-		clientPort = Integer.valueOf(port).intValue();
+		try {
+			console.printf("Enter port number for this client in the form \"10001\"\n");
+			String port = console.readLine("Port number > ");
+			clientPort = Integer.valueOf(port).intValue();
+		} catch (NumberFormatException e) {
+			console.printf("Invalid port number entered");
+			e.printStackTrace();
+			addr = null;
+		}
 		
 		return addr;
 	}
